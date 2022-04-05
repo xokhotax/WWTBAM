@@ -30,17 +30,29 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Results"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeT-0U-uZh">
+                                <rect key="frame" x="167.5" y="607" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="KeT-0U-uZh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0pk-ze-v1W"/>
+                            <constraint firstItem="eE1-TR-iV7" firstAttribute="top" secondItem="KeT-0U-uZh" secondAttribute="bottom" constant="75.5" id="9Uj-OX-FqT"/>
                             <constraint firstItem="1aU-ka-3QA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JRN-tF-Qy1"/>
                             <constraint firstItem="eE1-TR-iV7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="naZ-z2-YCC"/>
+                            <constraint firstItem="KeT-0U-uZh" firstAttribute="top" secondItem="1aU-ka-3QA" secondAttribute="bottom" constant="143.5" id="qef-pl-CB5"/>
                             <constraint firstItem="1aU-ka-3QA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uf7-di-VHp"/>
                             <constraint firstItem="eE1-TR-iV7" firstAttribute="top" secondItem="1aU-ka-3QA" secondAttribute="bottom" constant="240" id="wag-w9-rjp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uC3-A9-YAU"/>
+                    <connections>
+                        <outlet property="resultScore" destination="KeT-0U-uZh" id="tS0-Wf-7Xx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

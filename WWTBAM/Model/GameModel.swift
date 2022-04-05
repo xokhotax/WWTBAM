@@ -20,7 +20,6 @@ class Game {
 
 class GameSession {
     var score = 0
+    var totalQuestions = 0
     var correctAnswer: String = ""
 }
-
-

@@ -16,31 +16,42 @@ class GameViewController: UIViewController {
     @IBOutlet weak var answerButtonFour: UIButton!
     
     private var correctAnswer: String = ""
-    private let game = Game.shared.gameSession
+    private let game = GameSession()
+    private let gameSingleton = Game.shared.gameSession
+    private var questionCounter = 0
+    
+    var GameEnd: ((Int) -> Void)?
     
     private func generateQuestion() {
-        let generatedQuestion = questions.randomElement()
-        guard let generatedQuestion = generatedQuestion else {return}
-        self.questionText.text = generatedQuestion.question
-        self.answerButtonOne.setTitle(generatedQuestion.answer[0], for: .normal)
-        self.answerButtonTwo.setTitle(generatedQuestion.answer[1], for: .normal)
-        self.answerButtonThree.setTitle(generatedQuestion.answer[2], for: .normal)
-        self.answerButtonFour.setTitle(generatedQuestion.answer[3], for: .normal)
-        game.correctAnswer = generatedQuestion.trueAnswer
-        correctAnswer = game.correctAnswer
+        
+        if questionCounter < questions.count - 1 {
+            let generatedQuestion = questions[questionCounter]
+            self.questionText.text = generatedQuestion.question
+            self.answerButtonOne.setTitle(generatedQuestion.answer[0], for: .normal)
+            self.answerButtonTwo.setTitle(generatedQuestion.answer[1], for: .normal)
+            self.answerButtonThree.setTitle(generatedQuestion.answer[2], for: .normal)
+            self.answerButtonFour.setTitle(generatedQuestion.answer[3], for: .normal)
+            game.correctAnswer = generatedQuestion.trueAnswer
+            gameSingleton.correctAnswer = game.correctAnswer
+            gameSingleton.totalQuestions = questions.count
+            questionCounter += 1
+        } else {
+            performSegue(withIdentifier:"unwindToHome", sender: self)
+        }
     }
     
     private func scoreCounter() {
         game.score += 1
-        print (game.score)
+        gameSingleton.score = game.score
     }
     
     private func checkAnswer(button: UIButton) {
-        if self.correctAnswer == button.currentTitle {
+        if self.game.correctAnswer == button.currentTitle {
             generateQuestion()
             scoreCounter()
         } else {
             questionText.text = "Неверно"
+            GameEnd?(game.score)
             performSegue(withIdentifier:"unwindToHome", sender: self)
         }
     }
@@ -61,13 +72,8 @@ class GameViewController: UIViewController {
         checkAnswer(button: answerButtonFour)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         generateQuestion()
-        
     }
-    
-
-    
 }
