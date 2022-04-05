@@ -14,12 +14,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var answerButtonTwo: UIButton!
     @IBOutlet weak var answerButtonThree: UIButton!
     @IBOutlet weak var answerButtonFour: UIButton!
-    @IBOutlet weak var backButton: UIBarButtonItem!
-    
-    private let questions = [Question(question: "Название реки в Москве", answer: ["Москва", "Обь", "Иртыш", "Волга"], trueAnswer: "Москва"),
-                             Question(question: "Кто нес кольцов в Мордор", answer: ["Бильбо", "Фродо", "Голум", "Арагорн"], trueAnswer: "Фродо"),
-                             Question(question: "Сколько цветов в радуге", answer: ["14", "7", "1", "5"], trueAnswer: "7"),
-                             Question(question: "Сколько мм в 1 метре", answer: ["1000", "100", "25", "49,5"], trueAnswer: "1000"),]
     
     private var correctAnswer: String = ""
     private let game = Game.shared.gameSession
@@ -35,7 +29,7 @@ class GameViewController: UIViewController {
         game.correctAnswer = generatedQuestion.trueAnswer
         correctAnswer = game.correctAnswer
     }
-
+    
     private func scoreCounter() {
         game.score += 1
         print (game.score)
@@ -47,7 +41,7 @@ class GameViewController: UIViewController {
             scoreCounter()
         } else {
             questionText.text = "Неверно"
-            
+            performSegue(withIdentifier:"unwindToHome", sender: self)
         }
     }
     
@@ -67,13 +61,13 @@ class GameViewController: UIViewController {
         checkAnswer(button: answerButtonFour)
     }
     
-    @IBAction func pushButtonBack(_ sender: Any) {
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         generateQuestion()
         
     }
+    
+
     
 }
