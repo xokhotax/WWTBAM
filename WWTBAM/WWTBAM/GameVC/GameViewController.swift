@@ -16,11 +16,15 @@ class GameViewController: UIViewController {
     @IBOutlet weak var answerButtonFour: UIButton!
     
     private var correctAnswer: String = ""
-    private let game = GameSession()
+    private var game = GameSession()
     private let gameSingleton = Game.shared.gameSession
     private var questionCounter = 0
+    private let recordsCaretaker = RecordsCaretaker()
     
     var GameEnd: ((Int) -> Void)?
+    
+    weak var gameVCDelegate: GameVCDelegate?
+    
     
     private func generateQuestion() {
         
@@ -53,6 +57,8 @@ class GameViewController: UIViewController {
             questionText.text = "Неверно"
             GameEnd?(game.score)
             performSegue(withIdentifier:"unwindToHome", sender: self)
+            self.game.didEndGame(withResult: game.score,
+                                 totalQuestions: questions.count)
         }
     }
     
@@ -77,3 +83,4 @@ class GameViewController: UIViewController {
         generateQuestion()
     }
 }
+
