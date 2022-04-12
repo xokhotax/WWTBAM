@@ -14,11 +14,14 @@ class GameViewController: UIViewController {
     @IBOutlet weak var answerButtonTwo: UIButton!
     @IBOutlet weak var answerButtonThree: UIButton!
     @IBOutlet weak var answerButtonFour: UIButton!
+    @IBOutlet weak var questionsStatus: UILabel!
+    @IBOutlet weak var persantageOfRight: UILabel!
     
     private var correctAnswer: String = ""
     private var game = GameSession()
     private let gameSingleton = Game.shared.gameSession
     private let recordsCaretaker = RecordsCaretaker()
+    private var persantageOfRightAnswers = Observable<Double>(0.0)
     
     private var sequencyStrategy: SequencyStrategy {
         switch self.sequency {
@@ -53,10 +56,10 @@ class GameViewController: UIViewController {
     }
     
     private func nextQuestionNormal() {
-        if questionCounter < questions.count - 1 {
-            questionCounter += 1
+        if questionCounter.value < questions.count - 1 {
+            questionCounter.value += 1
         } else {
-            questionCounter = 0
+            questionCounter.value = 0
             performSegue(withIdentifier:"unwindToHome", sender: self)
         }
     }
@@ -66,13 +69,18 @@ class GameViewController: UIViewController {
         gameSingleton.score = game.score
     }
     
+    private func calculatePercentage() {
+        persantageOfRightAnswers.value = round(Double(game.score) / Double(questions.count) * Double(100.0), toDecimalPlaces: 1)
+    }
+    
     private func checkAnswer(button: UIButton) {
         if self.game.correctAnswer == button.currentTitle {
             nextQuestionNormal()
             generateQuestion()
             scoreCounter()
+            calculatePercentage()
         } else {
-            questionCounter = 0
+            questionCounter.value = 0
             questionText.text = "Неверно"
             GameEnd?(game.score)
             performSegue(withIdentifier:"unwindToHome", sender: self)
@@ -100,6 +108,15 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         generateQuestion()
+        questionCounter.addObserver(self, options: [.new, .initial],
+                                    closure: { [weak self] (questionCounter, _) in
+            self?.questionsStatus.text = "Количество верных ответов: \(questionCounter)"
+        })
+        persantageOfRightAnswers.addObserver(self, options: [.new, .initial]) {
+            [weak self] (persantageOfRightAnswers, _) in
+            self?.persantageOfRight.text = "Процент верных ответов: \(persantageOfRightAnswers)"
+        }
+        
+        
     }
 }
-

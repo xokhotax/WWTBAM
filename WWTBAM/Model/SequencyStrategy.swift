@@ -7,7 +7,7 @@
 
 import Foundation
 
-var questionCounter = 0
+var questionCounter = Observable<Int>(0)
 
 
 protocol SequencyStrategy {
@@ -16,7 +16,7 @@ protocol SequencyStrategy {
 
 final class NormalSequencyStrategy: SequencyStrategy {
     func generateQuestionsStrategy() -> Question? {
-        let generatedQuestion = questions[questionCounter]
+        let generatedQuestion = questions[questionCounter.value]
         return generatedQuestion
     }
 }
@@ -27,10 +27,3 @@ final class RandomlSequencyStrategy: SequencyStrategy {
         return generatedQuestion
     }
 }
-
-//class SequencyStrategyClass {
-//    private let sequencyStrategy: SequencyStrategy
-//    init (sequencyStrategy: SequencyStrategy){
-//        self.sequencyStrategy = sequencyStrategy
-//    }
-//}

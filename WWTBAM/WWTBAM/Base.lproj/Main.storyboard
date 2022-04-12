@@ -117,6 +117,18 @@
                                             <action selector="pushButtonTwo:" destination="Zhh-wK-wHL" eventType="touchUpInside" id="tQY-IS-yzi"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJ9-M8-c7d">
+                                        <rect key="frame" x="186" y="700.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZ6-am-lJ8">
+                                        <rect key="frame" x="186" y="737.5" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -126,10 +138,14 @@
                                     <constraint firstItem="xcx-Be-Zoz" firstAttribute="centerX" secondItem="c3I-6T-6yw" secondAttribute="centerX" id="BZF-6D-5PB"/>
                                     <constraint firstItem="K0V-Uc-Qyz" firstAttribute="top" secondItem="d6L-53-dsH" secondAttribute="bottom" constant="16" id="CJ3-h3-eO6"/>
                                     <constraint firstItem="d6L-53-dsH" firstAttribute="top" secondItem="9ER-NZ-7wK" secondAttribute="bottom" constant="16" id="LGQ-Bh-Odg"/>
+                                    <constraint firstAttribute="bottom" secondItem="gZ6-am-lJ8" secondAttribute="bottom" constant="16" id="M9f-St-off"/>
+                                    <constraint firstItem="gZ6-am-lJ8" firstAttribute="centerX" secondItem="c3I-6T-6yw" secondAttribute="centerX" id="Ojg-ad-uoZ"/>
+                                    <constraint firstItem="UJ9-M8-c7d" firstAttribute="centerX" secondItem="c3I-6T-6yw" secondAttribute="centerX" id="WZG-oO-JT3"/>
                                     <constraint firstItem="d6L-53-dsH" firstAttribute="centerX" secondItem="c3I-6T-6yw" secondAttribute="centerX" id="Xja-Pa-fIP"/>
                                     <constraint firstItem="xcx-Be-Zoz" firstAttribute="top" secondItem="K0V-Uc-Qyz" secondAttribute="bottom" constant="16" id="a2u-rk-39H"/>
                                     <constraint firstItem="PTZ-P7-4OI" firstAttribute="top" secondItem="c3I-6T-6yw" secondAttribute="top" constant="50" id="hMc-Z1-zFG"/>
                                     <constraint firstItem="9ER-NZ-7wK" firstAttribute="top" secondItem="PTZ-P7-4OI" secondAttribute="bottom" constant="16" id="iCU-YS-hCC"/>
+                                    <constraint firstItem="gZ6-am-lJ8" firstAttribute="top" secondItem="UJ9-M8-c7d" secondAttribute="bottom" constant="16" id="jeH-FL-MbB"/>
                                     <constraint firstItem="9ER-NZ-7wK" firstAttribute="centerX" secondItem="c3I-6T-6yw" secondAttribute="centerX" id="nm6-es-KCA"/>
                                 </constraints>
                             </view>
@@ -151,7 +167,9 @@
                         <outlet property="answerButtonOne" destination="9ER-NZ-7wK" id="YYI-LQ-PQB"/>
                         <outlet property="answerButtonThree" destination="K0V-Uc-Qyz" id="cQM-qW-98W"/>
                         <outlet property="answerButtonTwo" destination="d6L-53-dsH" id="eUE-cl-pPn"/>
+                        <outlet property="persantageOfRight" destination="gZ6-am-lJ8" id="ILO-Qb-qkB"/>
                         <outlet property="questionText" destination="PTZ-P7-4OI" id="bez-Pq-Oue"/>
+                        <outlet property="questionsStatus" destination="UJ9-M8-c7d" id="vy9-n2-MrO"/>
                         <segue destination="uD2-iP-4aD" kind="unwind" identifier="unwindToHome" unwindAction="unwindToFirstScreen:" id="WXR-JA-MAk"/>
                     </connections>
                 </viewController>

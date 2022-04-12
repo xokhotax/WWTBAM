@@ -35,7 +35,6 @@ class ViewController: UIViewController {
             destination.GameEnd = { [weak self] result in
                 guard let self = self else {return}
                 self.resultScore.text = "Last Score: \(result)"
-                questionCounter = 0
             } default:
             break
         }
