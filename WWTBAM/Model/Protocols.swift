@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol GameVCDelegate: class {
+protocol GameVCDelegate: AnyObject {
     func didEndGame (withResult result: Int, totalQuestions: Int)
 }
