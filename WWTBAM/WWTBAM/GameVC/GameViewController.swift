@@ -18,28 +18,45 @@ class GameViewController: UIViewController {
     private var correctAnswer: String = ""
     private var game = GameSession()
     private let gameSingleton = Game.shared.gameSession
-    private var questionCounter = 0
     private let recordsCaretaker = RecordsCaretaker()
     
+    private var sequencyStrategy: SequencyStrategy {
+        switch self.sequency {
+        case .normal:
+            return NormalSequencyStrategy()
+        case .random:
+            return RandomlSequencyStrategy()
+        }
+    }
+    
     var GameEnd: ((Int) -> Void)?
+    var sequency: Sequency = .normal
     
     weak var gameVCDelegate: GameVCDelegate?
     
+    private func fillQuestionsField (question: Question?) {
+        guard let question = question else { return }
+        self.questionText.text = question.question
+        self.answerButtonOne.setTitle(question.answer[0], for: .normal)
+        self.answerButtonTwo.setTitle(question.answer[1], for: .normal)
+        self.answerButtonThree.setTitle(question.answer[2], for: .normal)
+        self.answerButtonFour.setTitle(question.answer[3], for: .normal)
+    }
     
     private func generateQuestion() {
-        
+        let generatedQuestion = sequencyStrategy.generateQuestionsStrategy()
+        fillQuestionsField(question: generatedQuestion)
+        guard let generatedQuestion = generatedQuestion else { return }
+        game.correctAnswer = generatedQuestion.trueAnswer
+        gameSingleton.correctAnswer = game.correctAnswer
+        gameSingleton.totalQuestions = questions.count
+    }
+    
+    private func nextQuestionNormal() {
         if questionCounter < questions.count - 1 {
-            let generatedQuestion = questions[questionCounter]
-            self.questionText.text = generatedQuestion.question
-            self.answerButtonOne.setTitle(generatedQuestion.answer[0], for: .normal)
-            self.answerButtonTwo.setTitle(generatedQuestion.answer[1], for: .normal)
-            self.answerButtonThree.setTitle(generatedQuestion.answer[2], for: .normal)
-            self.answerButtonFour.setTitle(generatedQuestion.answer[3], for: .normal)
-            game.correctAnswer = generatedQuestion.trueAnswer
-            gameSingleton.correctAnswer = game.correctAnswer
-            gameSingleton.totalQuestions = questions.count
             questionCounter += 1
         } else {
+            questionCounter = 0
             performSegue(withIdentifier:"unwindToHome", sender: self)
         }
     }
@@ -51,9 +68,11 @@ class GameViewController: UIViewController {
     
     private func checkAnswer(button: UIButton) {
         if self.game.correctAnswer == button.currentTitle {
+            nextQuestionNormal()
             generateQuestion()
             scoreCounter()
         } else {
+            questionCounter = 0
             questionText.text = "Неверно"
             GameEnd?(game.score)
             performSegue(withIdentifier:"unwindToHome", sender: self)

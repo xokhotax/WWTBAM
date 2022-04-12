@@ -36,6 +36,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IEY-B0-zYU">
+                                <rect key="frame" x="104.5" y="88" width="205" height="32"/>
+                                <segments>
+                                    <segment title="Normal Mode"/>
+                                    <segment title="Random"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -43,6 +50,8 @@
                             <constraint firstItem="KeT-0U-uZh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0pk-ze-v1W"/>
                             <constraint firstItem="eE1-TR-iV7" firstAttribute="top" secondItem="KeT-0U-uZh" secondAttribute="bottom" constant="75.5" id="9Uj-OX-FqT"/>
                             <constraint firstItem="1aU-ka-3QA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JRN-tF-Qy1"/>
+                            <constraint firstItem="IEY-B0-zYU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RYB-Pa-KyK"/>
+                            <constraint firstItem="IEY-B0-zYU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X22-GD-751"/>
                             <constraint firstItem="eE1-TR-iV7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="naZ-z2-YCC"/>
                             <constraint firstItem="KeT-0U-uZh" firstAttribute="top" secondItem="1aU-ka-3QA" secondAttribute="bottom" constant="143.5" id="qef-pl-CB5"/>
                             <constraint firstItem="1aU-ka-3QA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uf7-di-VHp"/>
@@ -52,6 +61,7 @@
                     <navigationItem key="navigationItem" id="uC3-A9-YAU"/>
                     <connections>
                         <outlet property="resultScore" destination="KeT-0U-uZh" id="tS0-Wf-7Xx"/>
+                        <outlet property="sequence" destination="IEY-B0-zYU" id="NeN-Ew-HhK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
