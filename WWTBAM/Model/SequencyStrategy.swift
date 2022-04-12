@@ -9,6 +9,8 @@ import Foundation
 
 var questionCounter = Observable<Int>(0)
 
+private let questionCaretaker = QuestionsCaretaker()
+
 
 protocol SequencyStrategy {
     func generateQuestionsStrategy() -> Question?
@@ -16,7 +18,8 @@ protocol SequencyStrategy {
 
 final class NormalSequencyStrategy: SequencyStrategy {
     func generateQuestionsStrategy() -> Question? {
-        let generatedQuestion = questions[questionCounter.value]
+        let loadedQuestions = questionCaretaker.retrieveRecords()
+        let generatedQuestion = loadedQuestions[questionCounter.value]
         return generatedQuestion
     }
 }

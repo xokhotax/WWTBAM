@@ -23,4 +23,8 @@ final class RecordsCaretaker {
             return try self.decoder.decode([Record].self, from: data)
         } catch { print(error)
             return [] }
-    } }
+    }
+}
+
+
+

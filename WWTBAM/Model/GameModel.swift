@@ -9,7 +9,6 @@ import Foundation
 
 class Game {
     var gameSession = GameSession()
-
     private(set) var records: [Record] = [] {
         didSet {
         recordsCaretaker.save(records: self.records)

@@ -108,6 +108,9 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         generateQuestion()
+
+
+        
         questionCounter.addObserver(self, options: [.new, .initial],
                                     closure: { [weak self] (questionCounter, _) in
             self?.questionsStatus.text = "Количество верных ответов: \(questionCounter)"

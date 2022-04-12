@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Question {
+struct Question: Codable {
     let question: String
     let answer: [String]
     let trueAnswer: String
 }
 
-let questions = [Question(question: "Название реки в Москве",
+var questions = [Question(question: "Название реки в Москве",
                           answer: ["Москва", "Обь", "Иртыш", "Волга"],
                           trueAnswer: "Москва"),
                  Question(question: "Кто нес кольцов в Мордор",
